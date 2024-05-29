@@ -1,0 +1,49 @@
+AllCops:
+  TargetRubyVersion: 3.3.1
+  NewCops: disable
+  Exclude:
+    - bin/*
+    - vendor/**/*
+    - db/schema.rb
+    - db/migrate/*.rb
+    - config/environments/*.rb
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - db/seeds.rb
+    - config/**/*.rb
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Metrics/ClassLength:
+  Max: 300
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*.rb
+    - spec/**/*.rb
+    - lib/**/*.rb
+Metrics/AbcSize:
+  Exclude:
+    - config/**/*.rb
+Metrics/MethodLength:
+  Exclude:
+    - config/**/*.rb
+Style/WordArray:
+  Exclude:
+    - config/**/*.rb
+Style/StringLiterals:
+  Exclude:
+    - config/**/*.rb
+Style/DateTime:
+  Enabled: false
+Lint/RaiseException:
+  Enabled: true

@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: api_sms_message_development
+
+test:
+  <<: *default
+  database: api_sms_message_test
+
+production:
+  <<: *default
+  database: api_sms_message_production
+  username: api_sms_message
+  password: <%= ENV["API_SMS_MESSAGE_DATABASE_PASSWORD"] %>
