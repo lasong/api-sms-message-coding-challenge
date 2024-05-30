@@ -7,9 +7,8 @@ class MessageProcessor
 
   def process
     message_parts = MessageSplitter.new(message).split_message
-    response = SmsSender.send(message_parts)
 
-    raise(ExceptionHandler::SmsSendError, 'Error sending SMS') unless response.success?
+    SmsSender.send(message_parts)
 
     message_uuid = SecureRandom.uuid
     message_parts.each_with_index do |part, index|

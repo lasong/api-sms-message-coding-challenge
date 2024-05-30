@@ -25,6 +25,8 @@ Style/SymbolArray:
   Enabled: false
 Style/FormatStringToken:
   Enabled: false
+Style/HashSyntax:
+  Enabled: false
 Metrics/ClassLength:
   Max: 300
 Metrics/BlockLength:

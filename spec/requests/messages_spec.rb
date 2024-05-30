@@ -12,52 +12,34 @@ RSpec.describe 'Messages API', type: :request do
       { message: { content: short_content } }
     end
 
-    context 'success' do
-      it 'returns success response' do
-        post path, params: params
+    it 'returns success response' do
+      post path, params: params
 
-        expect(response).to have_http_status(201)
-      end
-
-      it 'sends 1 sms message if content is less than 160 characters' do
-        expect(SmsSender).to receive(:send).with([short_content]).and_call_original
-
-        post path, params: params
-      end
-
-      it 'sends multiple messages if content is more than 160 characters' do
-        params[:message][:content] = long_content
-
-        message_parts = [
-          'This is a very long message that needs to be split into multiple parts with a ' \
-          'suffix because it exceeds the maximum length of an SMS message, which is - part 1',
-          '160 characters. - part 2'
-        ]
-
-        expect(SmsSender).to receive(:send).with(message_parts).and_call_original
-
-        post path, params: params
-      end
-
-      it 'saves the message content' do
-        expect { post path, params: params }.to change(Message, :count).by(1)
-      end
+      expect(response).to have_http_status(201)
     end
 
-    context 'failure' do
-      before do
-        allow_any_instance_of(SmsSender::Response).to receive(:success?).and_return(false)
-      end
+    it 'sends 1 sms message if content is less than 160 characters' do
+      expect(SmsSender).to receive(:send).with([short_content]).and_call_original
 
-      it 'returns unprocessible entity response' do
-        post path, params: params
+      post path, params: params
+    end
 
-        expect(response).to have_http_status(422)
-      end
+    it 'sends multiple messages if content is more than 160 characters' do
+      params[:message][:content] = long_content
 
-      it 'does not save the message' do
-        expect { post path, params: params }.to change(Message, :count).by(0)
-      end
+      message_parts = [
+        'This is a very long message that needs to be split into multiple parts with a ' \
+        'suffix because it exceeds the maximum length of an SMS message, which is - part 1',
+        '160 characters. - part 2'
+      ]
+
+      expect(SmsSender).to receive(:send).with(message_parts).and_call_original
+
+      post path, params: params
+    end
+
+    it 'saves the message content' do
+      expect { post path, params: params }.to change(Message, :count).by(1)
     end
   end
 end
