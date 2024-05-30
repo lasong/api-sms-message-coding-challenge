@@ -1,24 +1,67 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
 
-Things you may want to cover:
+- Ruby (v3.3.1)
+- Postgresql
 
-* Ruby version
+## Setup
 
-* System dependencies
+Clone the repository and go to the `api-sms-message-coding-challenge` folder:
 
-* Configuration
+```
+git clone git@github.com:lasong/api-sms-message-coding-challenge.git
+cd api-sms-message-coding-challenge
+```
 
-* Database creation
+Then install the gems by running
 
-* Database initialization
+```
+bundle install
+```
 
-* How to run the test suite
+## Running the application
 
-* Services (job queues, cache servers, search engines, etc.)
+Before you run the application for the first time, you must create the database and run migrations:
 
-* Deployment instructions
+```
+bundle exec rails db:create db:migrate
+```
 
-* ...
+Start the app by running:
+
+```
+bundle exec rails s
+```
+
+Then send request by using a REST client app like Postman or by using curl.
+
+Example with curl:
+
+```
+curl -X POST http://localhost:3000/api/messages/send_sms \
+  -H "Content-Type: application/json" \
+  -d '{"message": {"content": "This is a message to be sent by sms"}}'
+```
+
+## Running tests
+
+If running for the first time, setup the test database:
+
+```
+bundle exec rails db:test:prepare
+```
+
+Then run the tests:
+
+```
+bundle exec rspec spec
+```
+
+### Linting
+
+Run linting check by running
+
+```
+bundle exec rubocop
+```
