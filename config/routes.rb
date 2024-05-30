@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  scope '/api' do
+    resources :messages, only: [] do
+      collection do
+        post 'send_sms'
+      end
+    end
+  end
 end

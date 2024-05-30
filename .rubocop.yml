@@ -1,20 +1,21 @@
 AllCops:
   TargetRubyVersion: 3.3.1
   NewCops: disable
+  SuggestExtensions: false
   Exclude:
     - bin/*
     - vendor/**/*
     - db/schema.rb
     - db/migrate/*.rb
     - config/environments/*.rb
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Exclude:
     - db/seeds.rb
     - config/**/*.rb
 Layout/MultilineMethodCallIndentation:
   Enabled: false
-Documentation:
+Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
