@@ -65,3 +65,12 @@ Run linting check by running
 ```
 bundle exec rubocop
 ```
+
+## Possible Issues
+- Security issues:
+  - Unauthorized use of the endpoint which can lead to data breaches, unauthorized data manipulation, and other malicious activities. This can be solved by implementing authorization techniques such as tokens (JWT) or API keys.
+  - The message sent can have SQL injections and other common attacks. This can be solved by implementing sanitization of the message
+- Introduction of new features or changes can cause the api to break, so it is always a good practice to implement API versioning to ensure backward compatibility
+- As the number of requests grow, it can lead to performance issues in the database. This can be solved by database optimizations techniques like implementing proper indexing.
+- Errors in the request can occur and it will be hard to track, so implementing logging and monitoring to track API requests and responses would be a solution.
+- The app is open to abusive requests. A solution would be to implement rate limiting using tools like tools like [rack-attack](https://github.com/rack/rack-attack)
